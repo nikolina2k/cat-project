@@ -1,41 +1,83 @@
 import React from 'react'
 import { Typography } from 'antd'
+import Chart from '../../components/Chart'
+import stub_data from './stub_data.js'
+import TokenTable from '../../components/TokenTable'
+import PairsTable from '../../components/PairsTabe'
 
+import { Col, Row, Slider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
-/*
-- Have two charts one for volume and one for total value locked
-        - Use tradingview or google charts
-        - We need to show line charts or bar charts
-        - Have two tables:
-        1)- table for tokens which shows the 24h volume of a token, name, symbol, liquidity, totalsupply
-        2)- table for pairs which shows the 24h volume, name of the tokens (2 tokens in a pair), symbols, liquidity 
-*/
+import type {Pair} from '../../components/PairsTabe'
+import type {TokenTableEntry} from '../../components/TokenTable'
+const tokenTableData: TokenTableEntry[] = [
+  {
+    key: '1',
+    tokenInfo: {name: 'Wrapped Fuse', icon_url: 'https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x0BE9e53fd7EDaC9F859882AfdDa116645287C629/logo.png'},
+    volume24: 18052,
+    liquidity: 666111,
+    symbol: 'WFUSE',
+    totalSupply: 10000000
+  },
+  {
+    key: '2',
+    tokenInfo: {name: 'Coineus', icon_url: 'https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x4e69Ae0CD024754655b4eF74F24A8DCB39Ba07e8/logo.png'},
+    volume24: 18052,
+    liquidity: 666111,
+    symbol: 'WFUSE',
+    totalSupply: 10000000
+  },
+  {
+    key: '3',
+    tokenInfo: {name: 'Binance USD on Fuse', icon_url: 'https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x6a5F6A8121592BeCd6747a38d67451B310F7f156/logo.png'},
+    volume24: 18052,
+    liquidity: 666111,
+    symbol: 'WFUSE',
+    totalSupply: 10000000
+  },
+];
+
+const pairsTableData: Pair[] = [
+  { name: 'ETH/BTC', symbol: 'ETHBTC', volume: 123456.789, liquidity: 987654.321 },
+  { name: 'BTC/USDT', symbol: 'BTCUSDT', volume: 987654.321, liquidity: 123456.789 },
+  // ...
+];
+
 export default function Home () {
     // We need some placeholder variables that we plug in later once we get the values
     const tvl = 1e6
+    const firstChartData = stub_data
+    const secondChartData = stub_data
+
     return (
         <>
+          <Row>
             <Typography>
                 <Title>Home</Title>
                 <Paragraph strong>Welcome to the analytics dashboard!</Paragraph>
                 <Paragraph>{tvl}</Paragraph>
-
-                <Paragraph>
-                    <Title>TODO:</Title>
-                    <ul>
-                        <li> Have two charts one for volume and one for total value locked </li>
-                        <li> Use tradingview or google charts </li>
-                        <li> We need to show line charts or bar charts </li>
-                        <li> Have two tables: 
-                            <ul>
-                                <li> table for tokens which shows the 24h volume of a token, name, symbol, liquidity, totalsupply</li>
-                                <li> table for pairs which shows the 24h volume, name of the tokens (2 tokens in a pair), symbols, liquidity</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </Paragraph>
             </Typography>
+            </Row>
+            <Row>
+              <Col span="12">
+                  <Chart title="Liquidity" data={firstChartData}/>
+              </Col>
+              <Col span="12">
+                  <Chart title="Volume (24h)" data={secondChartData} histogram/>
+              </Col>
+            </Row>
+            <Row>
+              <Typography><Title>Tokens</Title></Typography>
+              <TokenTable data={tokenTableData}/>
+            </Row>
+            <Row>
+              <Typography><Title>Pairs</Title></Typography>
+            </Row>
+            <Row>
+              <div style={{width: "100%"}}>
+              <PairsTable pairs={pairsTableData}/>
+              </div>
+            </Row>
         </>
     );
 }

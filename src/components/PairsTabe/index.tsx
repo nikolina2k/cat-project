@@ -40,3 +40,4 @@ const PairsTable: React.FC<PairsTableProps> = ({ pairs }) => {
 };
 
 export default PairsTable;
+export type { Pair }
