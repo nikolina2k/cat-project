@@ -1,0 +1,28 @@
+.accounts-container {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .accounts-container > * {
+    margin-bottom: 16px;
+  }
+  
+  .accounts-container > :last-child {
+    margin-bottom: 0;
+  }
+  
+  .accounts-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .accounts-form > * {
+    margin-right: 8px;
+  }
+  
+  .accounts-table {
+    width: 100%;
+  }
+  
