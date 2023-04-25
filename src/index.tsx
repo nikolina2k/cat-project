@@ -1,27 +1,22 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import App from './app';
 
 export default () => <App/>;
 
-export const mount = (Сomponent) => {
-    ReactDom.render(
-        <Сomponent/>,
-        document.getElementById('app')
-    );
+export const mount = (Сomponent, element = document.getElementById('app')) => {
+  const root = ReactDOM.createRoot(element);
+  root.render(<Сomponent/>);
 
-    if(module.hot) {
-        module.hot.accept('./app', ()=> {
-            ReactDom.render(
-                <App/>,
-                document.getElementById('app')
-            );
-        })
-    }
+  if(module.hot) {
+    module.hot.accept('./app', ()=> {
+      root.render(<Сomponent/>);
+    })
+  }
 };
 
 export const unmount = () => {
-    ReactDom.unmountComponentAtNode(document.getElementById('app'));
+  ReactDOM.unmountComponentAtNode(document.getElementById('app'));
 };
 

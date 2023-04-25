@@ -1,13 +1,18 @@
 {
-    "name": "cat-project",
-    "version": "1.0.0",
-    "description": "EPJA project",
+    "dependencies": {
+        "@ijl/cli": "^5.0.3-beta.0",
+        "@types/react": "^18.0.33",
+        "@types/react-dom": "^18.0.11",
+        "express": "^4.18.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^5.0.4"
+    },
     "main": "./src/index.tsx",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ijl-cli --server --port=8099 --with-open-browser",
-        "build": "npm run clean && ijl-cli --build --dev",
-        "build:prod": "npm run clean && ijl-cli --build",
+        "start": "ijl-cli server --port=8099 --with-open-browser",
+        "build": "npm run clean && ijl-cli build --dev",
+        "build:prod": "npm run clean && ijl-cli build",
         "clean": "rimraf dist"
     },
     "repository": {
