@@ -1,11 +1,17 @@
 {
+    "name": "cat-project",
+    "version": "1.0.0",
     "dependencies": {
+        "@ant-design/icons": "^5.0.1",
         "@ijl/cli": "^5.0.3-beta.0",
         "@types/react": "^18.0.33",
         "@types/react-dom": "^18.0.11",
+        "antd": "^5.4.2",
         "express": "^4.18.2",
+        "lightweight-charts": "^4.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "^6.10.0",
         "typescript": "^5.0.4"
     },
     "main": "./src/index.tsx",
@@ -25,18 +31,5 @@
     "bugs": {
         "url": "https://github.com/nikolina2k/cat-project/issues"
     },
-    "homepage": "https://github.com/nikolina2k/cat-project#readme",
-    "dependencies": {
-        "@ant-design/icons": "^5.0.1",
-        "@ijl/cli": "^4.1.6",
-        "@types/react": "^17.0.53",
-        "@types/react-dom": "^17.0.18",
-        "antd": "^5.4.2",
-        "express": "^4.18.2",
-        "lightweight-charts": "^4.0.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-router-dom": "^6.10.0",
-        "typescript": "^4.9.5"
-    }
+    "homepage": "https://github.com/nikolina2k/cat-project#readme"
 }

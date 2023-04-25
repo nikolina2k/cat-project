@@ -8,10 +8,10 @@ module.exports = {
     }
   },
   navigations: {
-    'undefined.main': '/undefined'
+    'cat-project.main': '/cat-project'
   },
   features: {
-    'undefined': {
+    'cat-project': {
       // add your features here in the format [featureName]: { value: string }
     },
   },
