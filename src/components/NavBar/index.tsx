@@ -34,7 +34,7 @@ const items: MenuProps['items'] = [
 
 function pathToMenuKey(location: Location): string {
     const key = location.pathname.split('/')[2]
-    return key.length === 0 ? 'home' : (key ?? "home");
+    return !key ? 'home' : key;
 }
 
 function NavBar() {
