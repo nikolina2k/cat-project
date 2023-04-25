@@ -4,6 +4,7 @@ import Chart from '../../components/Chart'
 import stub_data from './stub_data.js'
 import TokenTable from '../../components/TokenTable'
 import PairsTable from '../../components/PairsTabe'
+import './Home.css';
 
 import { Col, Row, Slider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
@@ -45,19 +46,11 @@ const pairsTableData: Pair[] = [
 
 export default function Home () {
     // We need some placeholder variables that we plug in later once we get the values
-    const tvl = 1e6
     const firstChartData = stub_data
     const secondChartData = stub_data
 
     return (
-        <>
-          <Row>
-            <Typography>
-                <Title>Home</Title>
-                <Paragraph strong>Welcome to the analytics dashboard!</Paragraph>
-                <Paragraph>{tvl}</Paragraph>
-            </Typography>
-            </Row>
+        <div className='container'>
             <Row>
               <Col span="12">
                   <Chart title="Liquidity" data={firstChartData}/>
@@ -78,6 +71,6 @@ export default function Home () {
               <PairsTable pairs={pairsTableData}/>
               </div>
             </Row>
-        </>
+        </div>
     );
 }
