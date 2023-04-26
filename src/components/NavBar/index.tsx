@@ -11,7 +11,7 @@ const items: MenuProps['items'] = [
         icon: <InfoCircleOutlined />,
     },
     {
-        label: (<Link to='/cat-project/account'>Account</Link>),
+        label: (<Link to='/cat-project/accounts'>Accounts</Link>),
         key: 'account',
         icon: <UserOutlined />,
     },

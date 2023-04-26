@@ -18,7 +18,7 @@ const App = () => {
                     <Route path="/cat-project/about" element={<About />} />
                     <Route path="/cat-project/tokens" element={<Tokens />} />
                     <Route path="/cat-project/pairs" element={<Pairs />} />
-                    <Route path="/cat-project/account" element={<Account />} />
+                    <Route path="/cat-project/accounts" element={<Account />} />
                     <Route path="/cat-project/account/:address" element={<Account />} />
                 </Routes>
             </BrowserRouter>
