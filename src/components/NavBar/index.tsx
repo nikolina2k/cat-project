@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import { HomeOutlined, InfoCircleOutlined, PieChartOutlined, UserOutlined, HeatMapOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Link, useLocation, Location } from 'react-router-dom';
+import './NavBar.css';
 
 const items: MenuProps['items'] = [
     {

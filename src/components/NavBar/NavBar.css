@@ -1,0 +1,16 @@
+.ant-menu-horizontal {
+    background-color: #F5DEB3;
+    border: none;
+  }
+  
+  .ant-menu-item {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4F4F4F;
+  }
+    
+  .anticon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
