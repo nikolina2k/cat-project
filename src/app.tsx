@@ -22,6 +22,15 @@ const App = () => {
                     <Route path="/cat-project/account/:address" element={<Account />} />
                 </Routes>
             </BrowserRouter>
+
+            <style>
+                {`
+                    body {
+                        background-color: #f5eddf;
+                    }
+                `}
+            </style>
+            
         </>
     )
 }
