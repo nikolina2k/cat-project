@@ -19,4 +19,3 @@ export const mount = (Сomponent, element = document.getElementById('app')) => {
 export const unmount = () => {
   ReactDOM.unmountComponentAtNode(document.getElementById('app'));
 };
-
