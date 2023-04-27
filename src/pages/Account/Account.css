@@ -1,4 +1,14 @@
+
 .account-container {
-    margin: 20px;
-  }
-  
+  padding: 20px;
+}
+
+.ant-table-cell {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+.ant-table-thead > tr > th {
+  font-weight: 600;
+  font-size: 16px;
+}

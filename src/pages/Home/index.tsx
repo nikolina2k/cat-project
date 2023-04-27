@@ -85,6 +85,8 @@ export default function Home() {
         <Typography>
           <Title>Tokens</Title>
         </Typography>
+      </Row>
+      <Row>
         <TokenTable data={tokenTableData} />
       </Row>
       <Row>
