@@ -26,7 +26,7 @@ const PairsTable: React.FC<PairsTableProps> = ({ pairs }) => {
       ),
     },
     {
-      title: '24h Volume',
+      title: 'Volume',
       dataIndex: 'volume',
       key: 'volume',
     },
