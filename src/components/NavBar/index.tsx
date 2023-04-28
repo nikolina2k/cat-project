@@ -34,7 +34,10 @@ const items: MenuProps['items'] = [
 ];
 
 function pathToMenuKey(location: Location): string {
-    const key = location.pathname.split('/')[2]
+    const split = location.pathname.split('/')
+    const rootIndex = split.indexOf('cat-project')
+    const key = split[rootIndex + 1]
+
     return !key ? 'home' : key;
 }
 
