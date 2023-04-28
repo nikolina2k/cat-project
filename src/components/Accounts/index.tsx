@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input, Table, Button } from 'antd';
 import './Accounts.css';
 
@@ -17,34 +17,31 @@ type Props = {
 };
 
 const Accounts: React.FC<Props> = ({ account }) => {
-  const [address, setAddress] = useState<string>('');
-  const [positions, setPositions] = useState<Position[]>([
+  const positions: Position[] = [
     {
-      key: 1,
       account: '0x9999',
       pair: 'beep',
       value: 1050,
     },
     {
-      key: 2,
       account: '0x9998',
       pair: 'boop',
       value: 7000,
     },
     {
-      key: 3,
       account: '0x9997',
       pair: 'some name 3',
       value: 1100,
     },
     {
-      key: 4,
       account: '0x9996',
       pair: 'some name 4',
       value: 100,
     },
-  ]);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  ];
+  const [address, setAddress] = React.useState<string>('');
+  const [filteredPositions, setFilteredPositions] = React.useState<Position[]>(positions);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
@@ -52,11 +49,11 @@ const Accounts: React.FC<Props> = ({ account }) => {
 
   const handleSearch = async () => {
     // filter positions based on the entered address
-    const filteredPositions = positions.filter(
+    const filtered = positions.filter(
       (position) => position.account === address
     );
     // update the positions state with the filtered positions
-    setPositions(filteredPositions);
+    setFilteredPositions(filtered);
   };
 
   const positionsColumns = [
@@ -117,7 +114,7 @@ const Accounts: React.FC<Props> = ({ account }) => {
             Search
           </Button>
         </div>
-        <Table className="accounts-table" dataSource={positions} columns={positionsColumns} />
+        <Table className="accounts-table" dataSource={filteredPositions} columns={positionsColumns} />
       </div>
     </>
   );
