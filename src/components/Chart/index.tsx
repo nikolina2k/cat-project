@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState, useContext }  from 'react'
-import { createChart } from 'lightweight-charts';
+import React, { useRef, useEffect, useState, useContext, useLayoutEffect }  from 'react'
+import { createChart, ColorType, MouseEventHandler, MouseEventParams } from 'lightweight-charts';
 import { ConfigProvider } from 'antd';
 
 var formatters = {
@@ -8,18 +8,20 @@ var formatters = {
 };
 
 function Chart({ title, data, width=0, histogram=false }) {
-    const ref = useRef(null)
-    const toolTip = useRef(null)
+    const chartHeight = 300
+    const resizeTimerInterval = 100
+
+    const chartRef = useRef(null)
+    const toolTipRef = useRef(null)
     const [price, setPrice] = useState(0)
     const [dateStr, setDateStr] = useState('')
     const [chartCreated, setChartCreated] = useState(null)
-    const antdContext = useContext(ConfigProvider.ConfigContext)
-    const theme = antdContext.theme
-    const chartHeight = 300
+    const theme = useContext(ConfigProvider.ConfigContext).theme
+    let resizeTimer = null;
 
     useEffect(() => {
-        const chart = createChart(ref.current, { 
-                width: 0, 
+        const chart = createChart(chartRef.current, { 
+                width: width, 
                 height: chartHeight, 
                 rightPriceScale: {
                     scaleMargins: {
@@ -29,16 +31,19 @@ function Chart({ title, data, width=0, histogram=false }) {
                     borderVisible: false,
                 },
                 timeScale: {
-                borderVisible: false,
-            }}
+                    borderVisible: false,
+                },
+                localization: {
+                    priceFormatter: formatters['Dollar'],
+                },
+                layout: {
+                    background: {
+                        color: 'transparent',
+                    },
+                },
+            }
         );
         setChartCreated(chart)
-
-        chart.applyOptions({
-            localization: {
-                priceFormatter: formatters['Dollar'],
-            },
-        });
         
         const series = histogram ? 
             chart.addHistogramSeries({
@@ -54,25 +59,40 @@ function Chart({ title, data, width=0, histogram=false }) {
 
         series.setData(data);
 
-        chart.subscribeCrosshairMove(function(param) {
-          if (  param === undefined || param.time === undefined || param.point.x < 0 || 
-                param.point.x > ref.current.width || param.point.y < 0 || 
-                param.point.y > ref.current.height ) return;
+        function onCrosshairMove(param: MouseEventParams): MouseEventHandler {
+            if (param === undefined || param.time === undefined || param.point.x < 0 || 
+                param.point.x > chartRef.current.width || param.point.y < 0 || 
+                param.point.y > chartRef.current.height ) return;
+        
+            const dataPoint: any = param.seriesData.get(series);
+            setPrice(dataPoint.value !== undefined ? dataPoint.value : dataPoint.close)
+            setDateStr(param.time.toString())
+        }
 
-          const dataPoint: any = param.seriesData.get(series);
-          setPrice(dataPoint.value !== undefined ? dataPoint.value : dataPoint.close)
-          setDateStr(param.time.toString())
-        })}
-    , [])
-    
-    //useEffect(() => {
-    //    chartCreated && chartCreated.resize(width, chartHeight);
-    //}, [width, chartCreated])
+        chart.subscribeCrosshairMove(onCrosshairMove)
+
+        const lastPoint = data[data.length - 1]
+        console.log(lastPoint)
+        setPrice(lastPoint.value)
+        setDateStr(lastPoint.time.toString())
+    }, [])
+
+
+
+    window.addEventListener('resize', () => {
+        if (!width && chartRef.current) {
+            clearInterval(resizeTimer);
+            resizeTimer = setTimeout(
+                () => chartCreated?.resize(chartRef.current.offsetWidth, chartHeight), 
+                resizeTimerInterval
+            );
+        }
+    });
 
     return (
         <>
-            <div style={{margin: 10}} ref={ref}>
-                <div ref={toolTip} style={{
+            <div style={{margin: 10}} ref={chartRef}>
+                <div ref={toolTipRef} style={{
                 	width: "200px",
                 	height: "70px",
                     left: "8px",
