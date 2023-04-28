@@ -7,7 +7,7 @@ const { Title, Paragraph, Text, Link } = Typography;
 export default function About() {
   return (
     <>
-      <Typography>
+      <Typography data-testid="about-page">
         <Title>The analytics dashboard project</Title>
 
         <Paragraph>

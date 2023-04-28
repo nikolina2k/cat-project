@@ -3,11 +3,11 @@
  */
 
 import { render, screen, beforeEach } from '@testing-library/react'
-import TokenTable from './index.tsx'
+import PairsTable from './index.tsx'
 import * as React from 'react'
 import '@testing-library/jest-dom'
 
-describe("TokenTable test", () => {
+describe("PairsTable test", () => {
     it("Render test", () => {
         Object.defineProperty(window, 'matchMedia', {
             writable: true,
@@ -23,7 +23,7 @@ describe("TokenTable test", () => {
             })),
           });
 
-        render(<TokenTable data={null}/>)
-        expect(screen.getByTestId("token-table")).toBeInTheDocument();
+        render(<PairsTable data={null}/>)
+        expect(screen.getByTestId("pairs-table")).toBeInTheDocument();
     });
 })

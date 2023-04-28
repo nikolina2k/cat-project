@@ -37,7 +37,7 @@ const PairsTable: React.FC<PairsTableProps> = ({ pairs }) => {
     },
   ];
 
-  return <Table dataSource={pairs} columns={columns} />;
+  return <Table dataSource={pairs} columns={columns} data-testid="pairs-table"/>;
 };
 
 export default PairsTable;

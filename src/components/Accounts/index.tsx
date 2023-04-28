@@ -91,7 +91,7 @@ const Accounts: React.FC<Props> = ({ account }) => {
             Search
           </Button>
         </form>
-        <Table className="accounts-table" dataSource={filteredPositions} columns={positionsColumns} />
+        <Table className="accounts-table" data-testid="accounts-table" dataSource={filteredPositions} columns={positionsColumns} />
       </div>}
       {(state.loading) && <div>This page is loading</div>}
       {(state.error) && <div>An error encountered while loading the data: {state.error}</div>}
