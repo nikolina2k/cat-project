@@ -25,4 +25,7 @@
   .accounts-table {
     width: 100%;
   }
-  
+
+  .ant-spin-container {
+    margin: 0%;
+  }
