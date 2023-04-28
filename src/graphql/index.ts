@@ -13,7 +13,7 @@ const newClient = (uri: string) => {
     })
 }
 
-export const netswapClient = newClient(getConfigValue('apiPath'))
+export const netswapClient = newClient(getConfigValue('cat.apiPath'))
 
 // Queries
 
