@@ -87,7 +87,9 @@ export default function Home() {
         </Typography>
       </Row>
       <Row>
-        <TokenTable data={tokenTableData} />
+        <Col span="24">
+          <TokenTable data={tokenTableData} />
+        </Col>
       </Row>
       <Row>
         <Typography>
@@ -95,9 +97,9 @@ export default function Home() {
         </Typography>
       </Row>
       <Row>
-        <div style={{ width: "100%" }}>
+        <Col span="24">
           <PairsTable pairs={pairsTableData} />
-        </div>
+        </Col>
       </Row>
     </div>
   );
