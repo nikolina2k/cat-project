@@ -13,7 +13,7 @@ const items: MenuProps['items'] = [
     },
     {
         label: (<Link to='/cat-project/accounts'>Accounts</Link>),
-        key: 'account',
+        key: 'accounts',
         icon: <UserOutlined />,
     },
     {

@@ -7,9 +7,15 @@ import Pairs from './pages/Pairs'
 import Account from './pages/Account'
 import NavBar from './components/NavBar';
 
+import { ConfigProvider, theme } from 'antd';
+
 const App = () => {
     return(
-        <>
+        <ConfigProvider theme={{
+            token: {
+              colorPrimary: '#E66201',
+            },
+          }}>
             <BrowserRouter>
                 <NavBar/>
 
@@ -19,7 +25,7 @@ const App = () => {
                     <Route path="/cat-project/tokens" element={<Tokens />} />
                     <Route path="/cat-project/pairs" element={<Pairs />} />
                     <Route path="/cat-project/accounts" element={<Account />} />
-                    <Route path="/cat-project/account/:address" element={<Account />} />
+                    <Route path="/cat-project/accounts/:address" element={<Account />} />
                 </Routes>
             </BrowserRouter>
 
@@ -31,7 +37,7 @@ const App = () => {
                 `}
             </style>
             
-        </>
+        </ConfigProvider>
     )
 }
 
