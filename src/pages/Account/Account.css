@@ -1,10 +1,9 @@
-
 .account-container {
   padding: 20px;
 }
 
-.ant-table-cell {
-  padding: 10px 16px;
+.ant-table-wrapper {
+  padding: 10px 0px;
   font-size: 14px;
 }
 

@@ -21,6 +21,7 @@ type Props = {
 const Accounts: React.FC<Props> = ({ account }) => {
   const { positions, state } = useCategorizedData()
   const [address, setAddress] = React.useState<string>('');
+  const [submit, setSubmit] = React.useState<Boolean>(false);
   // const [filteredPositions, setFilteredPositions] = React.useState<Position[]>(positions);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
@@ -30,7 +31,7 @@ const Accounts: React.FC<Props> = ({ account }) => {
 
   const filteredPositions = useMemo(() => {
     return positions.filter((position) => position.account.startsWith(address) || position.account.endsWith(address))
-  }, [address, positions])
+  }, [submit, positions])
 
   const positionsColumns = [
     {
@@ -84,7 +85,7 @@ const Accounts: React.FC<Props> = ({ account }) => {
   return (
     <>
       {(!state.loading && !state.error && state.data) &&<div className="accounts-container">
-        <form className="accounts-form" onSubmit={() => {}}>
+        <form className="accounts-form" onSubmit={(event) => {setSubmit(!submit); event.preventDefault();}}>
           <Input value={address} onChange={handleAddressChange} />
           <Button type="primary" htmlType="submit">
             Search
