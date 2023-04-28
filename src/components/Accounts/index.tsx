@@ -48,10 +48,6 @@ const Accounts: React.FC<Props> = ({ account }) => {
     },
   ];
 
-  const transactionsColumns = [
-    // define the columns for the transactions table
-  ];
-
   const topLiquidityPositions = [
     // define an array of top liquidity positions
   ];
@@ -93,10 +89,6 @@ const Accounts: React.FC<Props> = ({ account }) => {
         </Button>
       </div>
       <Table className="accounts-table" dataSource={positions} columns={positionsColumns} />
-      <Table className="accounts-table" dataSource={transactions} columns={transactionsColumns} />
-      <Button href={`https://explorer.example.com/account/${account}`} target="_blank">
-        Go to explorer
-      </Button>
     </div>
     </>
   );
