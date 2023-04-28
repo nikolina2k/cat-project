@@ -47,7 +47,8 @@ const Accounts: React.FC<Props> = ({ account }) => {
     setAddress(e.target.value);
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     // filter positions based on the entered address
     const filtered = positions.filter(
       (position) => position.account === address
@@ -108,12 +109,12 @@ const Accounts: React.FC<Props> = ({ account }) => {
   return (
     <>
       <div className="accounts-container">
-        <div className="accounts-form">
+        <form className="accounts-form" onSubmit={handleSearch}>
           <Input value={address} onChange={handleAddressChange} />
-          <Button type="primary" onClick={handleSearch}>
+          <Button type="primary" htmlType="submit">
             Search
           </Button>
-        </div>
+        </form>
         <Table className="accounts-table" dataSource={filteredPositions} columns={positionsColumns} />
       </div>
     </>
