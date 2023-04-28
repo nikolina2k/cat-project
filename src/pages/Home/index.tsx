@@ -1,86 +1,31 @@
 import React from "react";
 import { Typography } from "antd";
 import Chart from "../../components/Chart";
-import stub_data from "./stub_data.js";
 import TokenTable from "../../components/TokenTable";
 import PairsTable from "../../components/PairsTabe";
 import "./Home.css";
 
-import { Col, Row, Slider } from "antd";
-const { Title, Paragraph, Text, Link } = Typography;
+import { Col, Row } from "antd";
+const { Title } = Typography;
 
-import type { Pair } from "../../components/PairsTabe";
-import type { TokenTableEntry } from "../../components/TokenTable";
-const tokenTableData: TokenTableEntry[] = [
-  {
-    key: "1",
-    tokenInfo: {
-      name: "Wrapped Fuse",
-      icon_url:
-        "https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x0BE9e53fd7EDaC9F859882AfdDa116645287C629/logo.png",
-    },
-    volume24: 18052,
-    liquidity: 666111,
-    symbol: "WFUSE",
-    totalSupply: 10000000,
-  },
-  {
-    key: "2",
-    tokenInfo: {
-      name: "Coineus",
-      icon_url:
-        "https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x4e69Ae0CD024754655b4eF74F24A8DCB39Ba07e8/logo.png",
-    },
-    volume24: 18052,
-    liquidity: 666111,
-    symbol: "WFUSE",
-    totalSupply: 10000000,
-  },
-  {
-    key: "3",
-    tokenInfo: {
-      name: "Binance USD on Fuse",
-      icon_url:
-        "https://raw.githubusercontent.com/voltfinance/token-logos/main/logos/0x6a5F6A8121592BeCd6747a38d67451B310F7f156/logo.png",
-    },
-    volume24: 18052,
-    liquidity: 666111,
-    symbol: "WFUSE",
-    totalSupply: 10000000,
-  },
-];
-
-const pairsTableData: Pair[] = [
-  {
-    key: 0,
-    name: "ETH/BTC",
-    symbol: "ETHBTC",
-    volume: 123456.789,
-    liquidity: 987654.321,
-  },
-  {
-    key: 1,
-    name: "BTC/USDT",
-    symbol: "BTCUSDT",
-    volume: 987654.321,
-    liquidity: 123456.789,
-  },
-  // ...
-];
+import { useCategorizedData } from "../../contexts/GlobalData";
 
 export default function Home() {
   // We need some placeholder variables that we plug in later once we get the values
-  const firstChartData = stub_data;
-  const secondChartData = stub_data;
+
+  const {state, tokens, pairs, historicalVolume, historicalLiquidity, totalLiquidityUSD, totalVolumeUSD, metisPrice, } = useCategorizedData()
+  console.log({state, historicalVolume, historicalLiquidity, pairs})
+
 
   return (
-    <div className="container">
+    <>
+    {(state.data && !state.loading && !state.error) && <div className="container">
       <Row>
         <Col span="12">
-          <Chart title="Liquidity" data={firstChartData} />
+          <Chart title="Liquidity" data={historicalLiquidity} />
         </Col>
         <Col span="12">
-          <Chart title="Volume (24h)" data={secondChartData} histogram />
+          <Chart title="Volume (24h)" data={historicalVolume} histogram />
         </Col>
       </Row>
       <Row>
@@ -90,7 +35,7 @@ export default function Home() {
       </Row>
       <Row>
         <Col span="24">
-          <TokenTable data={tokenTableData} />
+          <TokenTable data={tokens} />
         </Col>
       </Row>
       <Row>
@@ -100,9 +45,14 @@ export default function Home() {
       </Row>
       <Row>
         <Col span="24">
-          <PairsTable pairs={pairsTableData} />
+          <PairsTable pairs={pairs} />
         </Col>
       </Row>
-    </div>
+    </div>}
+    {state.loading && <div>
+      This page is loading
+      </div>}
+    {state.error && <div>error encountered during loading the data: {state.error}</div>}
+    </>
   );
 }
