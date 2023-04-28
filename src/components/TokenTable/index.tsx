@@ -20,7 +20,7 @@ interface TokenTableEntry {
 
 function TokenTable({ data }) {
   return (
-    <Table dataSource={data}>
+    <Table dataSource={data} data-testid="token-table">
       <Column
         title="Name"
         dataIndex="tokenInfo"

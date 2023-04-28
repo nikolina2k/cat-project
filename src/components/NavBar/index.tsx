@@ -34,11 +34,10 @@ const items: MenuProps['items'] = [
 ];
 
 function pathToMenuKey(location: Location): string {
-    const split = location.pathname.split('/')
-    const rootIndex = split.indexOf('cat-project')
-    const key = split[rootIndex + 1]
+    const split = location.pathname?.split('/')
+    const rootIndex = split?.indexOf('cat-project')
 
-    return !key ? 'home' : key;
+    return ((!rootIndex && rootIndex !== 0) || rootIndex === -1 || !split[rootIndex + 1])  ? 'home' : split[rootIndex + 1];
 }
 
 function NavBar() {
@@ -48,3 +47,4 @@ function NavBar() {
 }
 
 export default NavBar
+export const exportedForTesting = { pathToMenuKey }

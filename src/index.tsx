@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import ReactDom from 'react-dom'
 
 import App from './app';
 
@@ -17,5 +18,5 @@ export const mount = (Сomponent, element = document.getElementById('app')) => {
 };
 
 export const unmount = () => {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'));
+    ReactDom.unmountComponentAtNode(document.getElementById('app'));
 };

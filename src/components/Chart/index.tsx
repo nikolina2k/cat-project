@@ -7,8 +7,6 @@ var formatters = {
 	Pound: function(price: number) { return '\u00A3' + price.toFixed(2); },
 };
 
-const formatterNames = Object.keys(formatters);
-
 function Chart({ title, data, width=0, histogram=false }) {
     const ref = useRef(null)
     const toolTip = useRef(null)
@@ -103,3 +101,6 @@ function Chart({ title, data, width=0, histogram=false }) {
 }
 
 export default Chart
+export const exportedForTesting = {
+    formatters
+}
