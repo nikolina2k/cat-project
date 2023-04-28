@@ -46,14 +46,6 @@ async function fetchData  (dispatch: React.Dispatch<Action>) {
     }
 };
 
-export function useGlobalData() {
-    const [state, dispatch] = useReducer(reducer, initialState);
-    useEffect(() => {
-        fetchData(dispatch);
-    }, []);
-    return state?.data
-}
-
 export function useCategorizedData() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
