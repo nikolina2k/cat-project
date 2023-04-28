@@ -1,1 +1,0 @@
-export const NETSWAP_GRAPHQL = 'https://andromeda.thegraph.metis.io/subgraphs/name/netswap/exchange'

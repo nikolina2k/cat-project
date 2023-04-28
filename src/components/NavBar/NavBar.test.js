@@ -11,18 +11,18 @@ import { BrowserRouter } from 'react-router-dom'
 describe("pathToMenuKey tests", () => {
     const { pathToMenuKey } = exportedForTesting
     it("Valid paths", () => {
-        expect(pathToMenuKey({pathname: "cat-project"})).toBe("home")
-        expect(pathToMenuKey({pathname: "cat-project/"})).toBe("home")
-        expect(pathToMenuKey({pathname: "cat-project/home"})).toBe("home")
-        expect(pathToMenuKey({pathname: "cat-project/tokens"})).toBe("tokens")
-        expect(pathToMenuKey({pathname: "cat-project/accounts"})).toBe("accounts")
-        expect(pathToMenuKey({pathname: "cat-project/home/subhome"})).toBe("home")
-        expect(pathToMenuKey({pathname: "cat-project/accounts/user"})).toBe("accounts")
-        expect(pathToMenuKey({pathname: "/some.domain/cat-project/about"})).toBe("about")
+        expect(pathToMenuKey({pathname: "cat"})).toBe("home")
+        expect(pathToMenuKey({pathname: "cat/"})).toBe("home")
+        expect(pathToMenuKey({pathname: "cat/home"})).toBe("home")
+        expect(pathToMenuKey({pathname: "cat/tokens"})).toBe("tokens")
+        expect(pathToMenuKey({pathname: "cat/accounts"})).toBe("accounts")
+        expect(pathToMenuKey({pathname: "cat/home/subhome"})).toBe("home")
+        expect(pathToMenuKey({pathname: "cat/accounts/user"})).toBe("accounts")
+        expect(pathToMenuKey({pathname: "/some.domain/cat/about"})).toBe("about")
     });
 
     it("Invalid paths", () => {
-        expect(() => pathToMenuKey({pathname: "cat"})).not.toThrow()
+        expect(() => pathToMenuKey({pathname: "cpr"})).not.toThrow()
         expect(() => pathToMenuKey({pathname: ""})).not.toThrow()
         expect(() => pathToMenuKey({pathname: undefined})).not.toThrow()
         expect(() => pathToMenuKey({pathname: null})).not.toThrow()

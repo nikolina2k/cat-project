@@ -2,7 +2,7 @@ import { ApolloClient } from 'apollo-client'
 import gql from 'graphql-tag'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
-import { NETSWAP_GRAPHQL } from '../constants'
+import { getConfigValue } from '@ijl/cli'
 
 const newClient = (uri: string) => {
     return new ApolloClient({
@@ -13,7 +13,7 @@ const newClient = (uri: string) => {
     })
 }
 
-export const netswapClient = newClient(NETSWAP_GRAPHQL)
+export const netswapClient = newClient(getConfigValue('apiPath'))
 
 // Queries
 

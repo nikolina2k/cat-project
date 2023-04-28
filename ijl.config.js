@@ -22,6 +22,6 @@ module.exports = {
     },
   },
   config: {
-    key: 'value'
+    'apiPath': 'https://andromeda.thegraph.metis.io/subgraphs/name/netswap/exchange'
   }
 }
