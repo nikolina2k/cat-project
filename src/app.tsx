@@ -6,6 +6,7 @@ import Tokens from './pages/Tokens'
 import Pairs from './pages/Pairs'
 import Account from './pages/Account'
 import NavBar from './components/NavBar';
+import { getNavigationsValue } from '@ijl/cli';
 
 import { ConfigProvider, theme } from 'antd';
 
@@ -20,12 +21,12 @@ const App = () => {
                 <NavBar/>
 
                 <Routes>
-                    <Route path="/cat-project/" element={<Home />} />        
-                    <Route path="/cat-project/about" element={<About />} />
-                    <Route path="/cat-project/tokens" element={<Tokens />} />
-                    <Route path="/cat-project/pairs" element={<Pairs />} />
-                    <Route path="/cat-project/accounts" element={<Account />} />
-                    <Route path="/cat-project/accounts/:address" element={<Account />} />
+                    <Route path={getNavigationsValue("cat-project.main")} element={<Home />} />        
+                    <Route path={getNavigationsValue("cat-project.about")} element={<About />} />
+                    <Route path={getNavigationsValue("cat-project.tokens")} element={<Tokens />} />
+                    <Route path={getNavigationsValue("cat-project.pairs")} element={<Pairs />} />
+                    <Route path={getNavigationsValue("cat-project.accounts")} element={<Account />} />
+                    <Route path={getNavigationsValue("cat-project.accounts.address")} element={<Account />} />
                 </Routes>
             </BrowserRouter>
 

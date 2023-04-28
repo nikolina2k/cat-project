@@ -8,7 +8,13 @@ module.exports = {
     }
   },
   navigations: {
-    'cat-project.main': '/cat-project'
+    'cat-project.root': 'cat-project',
+    'cat-project.main': '/cat-project',
+    'cat-project.about': '/cat-project/about',
+    'cat-project.accounts': '/cat-project/accounts',
+    'cat-project.accounts.address': '/cat-project/accounts/:address',
+    'cat-project.tokens': '/cat-project/tokens',
+    'cat-project.pairs': '/cat-project/pairs'
   },
   features: {
     'cat-project': {

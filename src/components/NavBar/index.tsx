@@ -1,33 +1,33 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import { HomeOutlined, InfoCircleOutlined, PieChartOutlined, UserOutlined, HeatMapOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import { Link, useLocation, Location } from 'react-router-dom';
+import { getNavigationsValue } from '@ijl/cli'
 import './NavBar.css';
 
 const items: MenuProps['items'] = [
     {
-        label: (<Link to='/cat-project/about'>About</Link>),
+        label: (<Link to={getNavigationsValue("cat-project.about")}>About</Link>),
         key: 'about',
         icon: <InfoCircleOutlined />,
     },
     {
-        label: (<Link to='/cat-project/accounts'>Accounts</Link>),
+        label: (<Link to={getNavigationsValue("cat-project.accounts")}>Accounts</Link>),
         key: 'accounts',
         icon: <UserOutlined />,
     },
     {
-        label: (<Link to='/cat-project/'>Home</Link>),
+        label: (<Link to={getNavigationsValue("cat-project.main")}>Home</Link>),
         key: 'home',
         icon: <HomeOutlined />,
     },
     {
-        label: (<Link to='/cat-project/pairs'>Pairs</Link>),
+        label: (<Link to={getNavigationsValue("cat-project.pairs")}>Pairs</Link>),
         key: 'pairs',
         icon: <PieChartOutlined />,
     },
     {
-        label: (<Link to='/cat-project/tokens'>Tokens</Link>),
+        label: (<Link to={getNavigationsValue("cat-project.tokens")}>Tokens</Link>),
         key: 'tokens',
         icon: <HeatMapOutlined />,
     },
@@ -35,7 +35,7 @@ const items: MenuProps['items'] = [
 
 function pathToMenuKey(location: Location): string {
     const split = location.pathname?.split('/')
-    const rootIndex = split?.indexOf('cat-project')
+    const rootIndex = split?.indexOf(getNavigationsValue("cat-project.root"))
 
     return ((!rootIndex && rootIndex !== 0) || rootIndex === -1 || !split[rootIndex + 1])  ? 'home' : split[rootIndex + 1];
 }
