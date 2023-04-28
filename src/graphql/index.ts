@@ -98,5 +98,19 @@ query globalInfo {
         txCount
     }
 
+    liquidityPositions(first: 1000, orderBy: liquidityTokenBalance, orderDirection: desc, where: {liquidityTokenBalance_gt: 0}){
+        id
+        user {
+            id
+        }
+        pair {
+          id
+          token0{ symbol }
+          token1{ symbol }
+          reserveUSD
+          totalSupply
+        }
+        liquidityTokenBalance
+      }
 }
 `

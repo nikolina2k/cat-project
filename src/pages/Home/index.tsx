@@ -13,9 +13,7 @@ import { useCategorizedData } from "../../contexts/GlobalData";
 export default function Home() {
   // We need some placeholder variables that we plug in later once we get the values
 
-  const {state, tokens, pairs, historicalVolume, historicalLiquidity, totalLiquidityUSD, totalVolumeUSD, metisPrice, } = useCategorizedData()
-  console.log({state, historicalVolume, historicalLiquidity, pairs})
-
+  const {state, tokens, pairs, historicalVolume, historicalLiquidity } = useCategorizedData()
 
   return (
     <>

@@ -71,6 +71,7 @@ export function useCategorizedData() {
             totalLiquidityUSD: 0,
             totalVolumeUSD: 0,
             metisPrice,
+            positions: [],
             state
         }
         const data = state.data
@@ -78,7 +79,7 @@ export function useCategorizedData() {
             tokens: data.tokens.map((token) => {
                 return {
                   key: token.id,
-                  tokenInfo: {name: token.name, icon_url: token.name},
+                  tokenName: token.name,
                   volume24: parseFloat(token.tradeVolumeUSD) + 0,
                   liquidity: parseFloat(token.totalLiquidity) + 0,
                   symbol: token.symbol,
@@ -109,6 +110,14 @@ export function useCategorizedData() {
             totalLiquidityUSD: parseFloat(data.netswapFactories[0].totalLiquidityUSD) + 0,
             totalVolumeUSD: parseFloat(data.netswapFactories[0].totalVolumeUSD) + 0,
             metisPrice: metisPrice,
+            positions: data.liquidityPositions.map((position) => {
+                return {
+                  key: `${position.user.id}-${position.pair.id}`,
+                  account: position.user.id,
+                  pair: `${position.pair.token0.symbol}-${position.pair.token1.symbol}`,
+                  value: parseFloat(position.pair.reserveUSD) * parseFloat(position.liquidityTokenBalance) / parseFloat(position.pair.totalSupply) + 0
+                }
+              }).filter((a) => (a.value > 0)).sort((a, b) => (b.value - a.value)),
             state
           }
     }, [state])

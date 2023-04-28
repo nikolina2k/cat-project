@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Input, Table, Button } from 'antd';
 import './Accounts.css';
+import { useCategorizedData } from '../../contexts/GlobalData';
 
 type Position = {
+  key: string;
   account: string;
   pair: string;
   value: number;
@@ -17,45 +19,18 @@ type Props = {
 };
 
 const Accounts: React.FC<Props> = ({ account }) => {
-  const positions: Position[] = [
-    {
-      account: '0x9999',
-      pair: 'beep',
-      value: 1050,
-    },
-    {
-      account: '0x9998',
-      pair: 'boop',
-      value: 7000,
-    },
-    {
-      account: '0x9997',
-      pair: 'some name 3',
-      value: 1100,
-    },
-    {
-      account: '0x9996',
-      pair: 'some name 4',
-      value: 100,
-    },
-  ];
+  const { positions, state } = useCategorizedData()
   const [address, setAddress] = React.useState<string>('');
-  const [filteredPositions, setFilteredPositions] = React.useState<Position[]>(positions);
+  // const [filteredPositions, setFilteredPositions] = React.useState<Position[]>(positions);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
   };
 
-  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // filter positions based on the entered address
-    const filtered = positions.filter(
-      (position) => position.account === address
-    );
-    // update the positions state with the filtered positions
-    setFilteredPositions(filtered);
-  };
+  const filteredPositions = useMemo(() => {
+    return positions.filter((position) => position.account.startsWith(address) || position.account.endsWith(address))
+  }, [address, positions])
 
   const positionsColumns = [
     {
@@ -108,15 +83,17 @@ const Accounts: React.FC<Props> = ({ account }) => {
 
   return (
     <>
-      <div className="accounts-container">
-        <form className="accounts-form" onSubmit={handleSearch}>
+      {(!state.loading && !state.error && state.data) &&<div className="accounts-container">
+        <form className="accounts-form" onSubmit={() => {}}>
           <Input value={address} onChange={handleAddressChange} />
           <Button type="primary" htmlType="submit">
             Search
           </Button>
         </form>
         <Table className="accounts-table" dataSource={filteredPositions} columns={positionsColumns} />
-      </div>
+      </div>}
+      {(state.loading) && <div>This page is loading</div>}
+      {(state.error) && <div>An error encountered while loading the data: {state.error}</div>}
     </>
   );
 };
