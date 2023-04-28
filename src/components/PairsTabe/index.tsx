@@ -2,6 +2,7 @@ import React from 'react';
 import { Table } from 'antd';
 
 type Pair = {
+  key: React.Key;
   name: string;
   symbol: string;
   volume: number;
