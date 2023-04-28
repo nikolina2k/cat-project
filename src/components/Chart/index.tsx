@@ -83,7 +83,6 @@ function Chart({ title, data, width=0, histogram=false }) {
                 	padding: "8px",
                 	fontSize: "12px",
                 	color: '#20262E',
-                	//backgroundColor: "rgba(255, 255, 255, 0.23)",
                 	textAlign: "left",
                 	zIndex: 1000,
                 	pointerEvents: "none"
