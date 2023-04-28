@@ -26,19 +26,19 @@ const Accounts: React.FC<Props> = ({ account }) => {
       value: 1050,
     },
     {
-      key: 1,
+      key: 2,
       account: '0x9998',
       pair: 'boop',
       value: 7000,
     },
     {
-      key: 1,
+      key: 3,
       account: '0x9997',
       pair: 'some name 3',
       value: 1100,
     },
     {
-      key: 1,
+      key: 4,
       account: '0x9996',
       pair: 'some name 4',
       value: 100,
@@ -51,8 +51,12 @@ const Accounts: React.FC<Props> = ({ account }) => {
   };
 
   const handleSearch = async () => {
-    // fetch positions and transactions based on the entered address
-    // set the positions and transactions state accordingly
+    // filter positions based on the entered address
+    const filteredPositions = positions.filter(
+      (position) => position.account === address
+    );
+    // update the positions state with the filtered positions
+    setPositions(filteredPositions);
   };
 
   const positionsColumns = [
@@ -107,14 +111,14 @@ const Accounts: React.FC<Props> = ({ account }) => {
   return (
     <>
       <div className="accounts-container">
-      <div className="accounts-form">
-        <Input value={address} onChange={handleAddressChange} />
-        <Button type="primary" onClick={handleSearch}>
-          Search
-        </Button>
+        <div className="accounts-form">
+          <Input value={address} onChange={handleAddressChange} />
+          <Button type="primary" onClick={handleSearch}>
+            Search
+          </Button>
+        </div>
+        <Table className="accounts-table" dataSource={positions} columns={positionsColumns} />
       </div>
-      <Table className="accounts-table" dataSource={positions} columns={positionsColumns} />
-    </div>
     </>
   );
 };
