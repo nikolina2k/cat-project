@@ -7,27 +7,27 @@ import './NavBar.css';
 
 const items: MenuProps['items'] = [
     {
-        label: (<Link to={getNavigationsValue("cat-project.about")}>About</Link>),
+        label: (<Link to={getNavigationsValue("cat.about")}>About</Link>),
         key: 'about',
         icon: <InfoCircleOutlined />,
     },
     {
-        label: (<Link to={getNavigationsValue("cat-project.accounts")}>Accounts</Link>),
+        label: (<Link to={getNavigationsValue("cat.accounts")}>Accounts</Link>),
         key: 'accounts',
         icon: <UserOutlined />,
     },
     {
-        label: (<Link to={getNavigationsValue("cat-project.main")}>Home</Link>),
+        label: (<Link to={getNavigationsValue("cat.main")}>Home</Link>),
         key: 'home',
         icon: <HomeOutlined />,
     },
     {
-        label: (<Link to={getNavigationsValue("cat-project.pairs")}>Pairs</Link>),
+        label: (<Link to={getNavigationsValue("cat.pairs")}>Pairs</Link>),
         key: 'pairs',
         icon: <PieChartOutlined />,
     },
     {
-        label: (<Link to={getNavigationsValue("cat-project.tokens")}>Tokens</Link>),
+        label: (<Link to={getNavigationsValue("cat.tokens")}>Tokens</Link>),
         key: 'tokens',
         icon: <HeatMapOutlined />,
     },
@@ -35,7 +35,7 @@ const items: MenuProps['items'] = [
 
 function pathToMenuKey(location: Location): string {
     const split = location.pathname?.split('/')
-    const rootIndex = split?.indexOf(getNavigationsValue("cat-project.root"))
+    const rootIndex = split?.indexOf(getNavigationsValue("cat.root"))
 
     return ((!rootIndex && rootIndex !== 0) || rootIndex === -1 || !split[rootIndex + 1])  ? 'home' : split[rootIndex + 1];
 }

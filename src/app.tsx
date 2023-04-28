@@ -21,12 +21,12 @@ const App = () => {
                 <NavBar/>
 
                 <Routes>
-                    <Route path={getNavigationsValue("cat-project.main")} element={<Home />} />        
-                    <Route path={getNavigationsValue("cat-project.about")} element={<About />} />
-                    <Route path={getNavigationsValue("cat-project.tokens")} element={<Tokens />} />
-                    <Route path={getNavigationsValue("cat-project.pairs")} element={<Pairs />} />
-                    <Route path={getNavigationsValue("cat-project.accounts")} element={<Account />} />
-                    <Route path={getNavigationsValue("cat-project.accounts.address")} element={<Account />} />
+                    <Route path={getNavigationsValue("cat.main")} element={<Home />} />        
+                    <Route path={getNavigationsValue("cat.about")} element={<About />} />
+                    <Route path={getNavigationsValue("cat.tokens")} element={<Tokens />} />
+                    <Route path={getNavigationsValue("cat.pairs")} element={<Pairs />} />
+                    <Route path={getNavigationsValue("cat.accounts")} element={<Account />} />
+                    <Route path={getNavigationsValue("cat.accounts.address")} element={<Account />} />
                 </Routes>
             </BrowserRouter>
 

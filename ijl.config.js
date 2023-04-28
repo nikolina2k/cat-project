@@ -8,16 +8,16 @@ module.exports = {
     }
   },
   navigations: {
-    'cat-project.root': 'cat-project',
-    'cat-project.main': '/cat-project',
-    'cat-project.about': '/cat-project/about',
-    'cat-project.accounts': '/cat-project/accounts',
-    'cat-project.accounts.address': '/cat-project/accounts/:address',
-    'cat-project.tokens': '/cat-project/tokens',
-    'cat-project.pairs': '/cat-project/pairs'
+    'cat.root': 'cat',
+    'cat.main': '/cat',
+    'cat.about': '/cat/about',
+    'cat.accounts': '/cat/accounts',
+    'cat.accounts.address': '/cat/accounts/:address',
+    'cat.tokens': '/cat/tokens',
+    'cat.pairs': '/cat/pairs'
   },
   features: {
-    'cat-project': {
+    'cat': {
       // add your features here in the format [featureName]: { value: string }
     },
   },
